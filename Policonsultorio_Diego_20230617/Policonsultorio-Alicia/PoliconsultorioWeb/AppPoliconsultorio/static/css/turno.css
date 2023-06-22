@@ -1,0 +1,21 @@
+.form-container {
+    max-width: 1800px;
+}
+
+.rotulo_filtro {
+    margin: 5px 10px;
+}
+
+.nombre_completo {
+    width: 60%;
+    margin: 2px 2px;
+}
+
+.mensajes {
+    color: red;
+}
+
+.paciente_recuadro {
+    color: yellow;
+    border-radius: 25rem;
+}

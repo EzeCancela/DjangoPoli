@@ -1,0 +1,46 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+
+{% load static %}
+
+<!-- Estilos CSS personalizados-->
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static '/css/baja_especialidad.css' %}">
+{% endblock %}
+
+{% block titulo %}Baja de una Especialidad {% endblock %}
+
+
+{% block encabezado %}
+<h2>Baja de una especialidad Medica</h2>
+{% endblock %}
+
+
+{% block contenido %}
+ <section class="alta_esp" style="margin-top: 40px;">
+  <form method="POST">
+    {% csrf_token %}
+    <label for="codigo_especialidad">Código de la especialidad:</label>
+    <input type="text" id="codigo_especialidad" name="codigo_especialidad">
+    <button type="submit">Eliminar especialidad</button>
+  </form>
+  
+  {% if especialidad_eliminada %}
+    <p>Especialidad dada de baja exitosamente.</p>
+  {% endif %}
+ </section>
+{% endblock %}
+
+  
+
+<!-- <form method="POST">
+    {% csrf_token %}
+    <label for="codigo_especialidad">Código de la especialidad:</label>
+    <input type="text" id="codigo_especialidad" name="codigo_especialidad">
+    <button type="submit">Eliminar especialidad</button>
+  </form>
+  
+  {% if especialidad_eliminada %}
+    <p>Especialidad dada de baja exitosamente.</p>
+  {% endif %}
+
+-->

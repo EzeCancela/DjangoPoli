@@ -1,0 +1,43 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+ <!-- Estilos CSS personalizados-->
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static '/css/alta_medico.css' %}">
+{% endblock %}
+
+{% block titulo %} Alta de un Médico {% endblock %}
+
+{% block contenido %}
+<div class="container">
+	<div class="form-container justifica-arriba">
+		<div class="form-row justify-content-center">
+			<h2><u>Alta de un Médico</u></h2>
+		</div>
+		<!--<form>-->
+		<form action="{% url 'alta_medico' %}" method="post">
+			{% csrf_token %}
+            {{form.as_p}}
+			<!-- <div class="form-row">
+				<div class="mt-lg-0 d-flex align-items-stretch">
+					<label class='rotulo_filtro' for="medico">Medico: <b>{{ medico }}</b></label>
+				</div>
+			</div> -->
+
+			<!-- Mensajes -->
+			<div class="mensajes">
+				{% if errores %}
+					{{errores}}
+				{% endif %}
+			</div>
+			<div class="messages form-row justify-content-center" style="color: red;">
+				{% filter upper %}
+					<p><b> {{ ValidationError }} </b></p>
+				{% endfilter %}
+			</div>
+			<div class="form-row justify-content-center">
+				<button type="submit" class="btn btn-primary">Incorporar</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

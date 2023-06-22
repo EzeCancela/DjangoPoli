@@ -1,0 +1,35 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/turno.css' %}">
+{% endblock %}
+
+{% block titulo %}Listado de Pacientes{% endblock %}
+
+{% block encabezado %}
+<h2>Listado de Pacientes</h2>
+{% endblock %}
+
+{% block contenido %}
+
+<section class="listado" style="margin-top: 40px;">
+
+{%for paciente in listar_pacientes %}
+    <article>
+        <P><b>Nombre:</b> {{paciente.nombre}}</P>  
+        <P><b>apellido:</b> {{paciente.apellido}}</P>     
+        <P><b>DNI:</b> {{paciente.dni}}</P>  
+        <P><b>E-mail:</b> {{paciente.mail}}</P>  
+        <P><b>Teléfono:</b> {{paciente.telefono}}</P>  
+        <P><b>F.Nacimiento:</b> {{paciente.fecha_nacimiento}}</P>     
+        <P><b>Género:</b> {{paciente.genero}}</P>  
+        <P><b>O. Social:</b> {{paciente.obra_social}}</P>
+        <P>--------------------------------------------------</P>
+    </article>
+{% empty %}
+
+{% endfor %}
+</section>
+{% endblock %}

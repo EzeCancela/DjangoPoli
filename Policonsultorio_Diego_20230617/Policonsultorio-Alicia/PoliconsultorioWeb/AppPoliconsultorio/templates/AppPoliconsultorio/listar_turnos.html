@@ -1,0 +1,29 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '/css/turno.css' %}">
+{% endblock %}
+
+{% block titulo %}Listado de turnos{% endblock %}
+
+{% block encabezado %}
+<h2>Listado de turnos</h2>
+{% endblock %}
+
+{% block contenido %}
+<section class="listado" style="margin-top: 40px;"></section>
+    {%for turno in listado_turnos %}
+        <article>
+            <P>Día: {{turno.dia}}</P>  
+            <P>Hora: {{turno.horario}}</P>
+            <P>Médico: {{turno.medico}}</P>
+            <P>Paciente: {{turno.paciente}}</P></P>
+            <P>--------------------------------------------------</P>
+        </article>
+    {% empty %}
+
+    {% endfor %}
+</section>
+{% endblock %}

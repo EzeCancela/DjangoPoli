@@ -1,0 +1,30 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/alta_especialidad.css' %}">
+{% endblock %}
+
+
+{% block titulo %}Alta de una Especialidad {% endblock %}
+
+
+{% block encabezado %}
+<h2>Alta de una especialidad Medica</h2>
+{% endblock %}
+
+{% block contenido %}
+<section class="alta_esp" style="margin-top: 40px;">
+<h2> Ingrese la espacialidad medica a dar de alta</h2>
+<h2> con su codigo respectivo </h2>
+<form action="" method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Confirmar">
+</form>
+</section>
+{% endblock %}
+

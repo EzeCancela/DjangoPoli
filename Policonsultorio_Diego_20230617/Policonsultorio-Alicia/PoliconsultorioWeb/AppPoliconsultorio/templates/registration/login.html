@@ -1,0 +1,50 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="container">
+	<div class="form-container justifica-arriba">
+		<div class="form-row justify-content-center">
+			<!--<h2><u>Ingrese los datos del turno médico</u></h2>-->
+			{% block titulo %} <h2><u> Ingreso a Policonsultorio</u></h2> {% endblock %}
+		</div>
+         <!--<div class="form-row">
+            <div class="col-lg-11 mt-5 mt-lg-0 d-flex align-items-stretch">
+               <div class="form-group col-md-6">-->
+                  <form method="post" action="{% url 'login' %}">
+                     {% csrf_token %}
+                     {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                           {{ form.non_field_errors }}
+                        </div>
+                     {% endif %}
+                     <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                           <div class="alert alert-danger" role="alert">
+                              {{ form.username.errors }}
+                           </div>
+                        {% endif %}
+                     </div>
+                     <br>
+                     <div class="form-group">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                           <div class="alert alert-danger" role="alert">
+                              {{ form.password.errors }}
+                           </div>
+                        {% endif %}
+                     </div>
+                     <br>
+                     <!-- Este que puse arriba del button es para guardar el parametro de la pagina o vista anterior al login -->
+                     <input type="hidden" name="next" value="{{ next_url }}"> 
+                     <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                  </form>
+               <!--</div>
+            </div>
+         </div>-->
+   </div>
+</div>
+{% endblock %}

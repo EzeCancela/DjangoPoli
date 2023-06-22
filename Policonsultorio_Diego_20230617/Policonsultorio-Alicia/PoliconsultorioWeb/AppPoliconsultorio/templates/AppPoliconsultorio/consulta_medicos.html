@@ -1,0 +1,76 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+ <!-- Estilos CSS personalizados-->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '/css/consulta_medicos.css' %}">
+{% endblock %}
+
+{% block titulo %} Médicos {% endblock %}
+{% block contenido %}
+    <h2>Médicos con consultorio en el Policonsultorio</h2>
+
+    <section>
+        <h3>Listado de Médicos</h3>
+        <article>
+            <!-- <li style="color: {% cycle 'red' 'green' %} ">
+                <p>Médico: {{medico.medico}}</p>
+                <p>Especialidad: {{medico.especialidad}}</p>
+                <p>Matrícula: {{medico.matricula}}</p>
+                <p>Agenda: {{turno.agenda}} </p>
+            </li> -->
+            <form action="{% url 'consulta_medicos' %}" method="GET">
+                <!-- {{form.as_p}} -->
+                <div>
+                    <input type="submit" value="Nuevo Médico">
+                    <input type="submit" value="Bajar un Médico">
+                </div>
+                <div>
+                    <h2>Filtros</h2>
+                    <!-- {% csrf_token %} -->
+                    {{form}}
+                    <div class="form-group-2">
+                        <label for="especialidad">Especialidad:</label>
+                        <select class="form-control" id="especialidad">
+                            <option value="">Seleccione una especialidad</option>
+                            {% for especialidad in listado_especialidad %}
+                                <option value="{{especialidad}}">{{especialidad}}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                        <label for="medico">Médico:</label>
+                        <select class="form-control" id="medico">
+                        <option value="">Seleccione un médico</option>
+                            {% for medico in listado_medicos %}
+                                <option value="{{medico.ID}}">{{medico.nombre}}</option>
+                            {% endfor %}							
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Médico</th>
+                            <th>Especialidad</th>
+                            <th>Matrícula</th>
+                            <th>Agenda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for medico in listado_medicos %}
+                        <tr>
+                            <th>medico.nombre</th>
+                            <td>medico.especialidad</td>
+                            <td>medico.matricula</td>
+                            <td>medico.agenda</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+
+{% endblock %}

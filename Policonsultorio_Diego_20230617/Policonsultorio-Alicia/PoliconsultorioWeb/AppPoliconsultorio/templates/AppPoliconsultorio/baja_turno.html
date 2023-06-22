@@ -1,0 +1,99 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+{% block titulo %} Baja del turno médico {% endblock %}
+
+{% block extra_css %}
+ <link rel="stylesheet" href="{% static '/css/turno.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <!--<div>class ="row">
+    <div> class=<col>md-4 > -->
+    <div class="form-container justifica-arriba"> 
+        <div class="form-row justify-content-center">
+			<h2><u>Eliminación de turnos</u></h2>
+		</div>
+        <div class="messages form-row justify-content-center"> 
+            {% if messages %}
+            <ul class="messages_list">
+                {% for message in messages %}
+                    {% filter upper %}
+                    <li style="color: red;" {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        <b> {{ message }} </b>
+                    </li>
+                    {% endfilter %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>  
+        <form action="{% url 'baja_turno' %}" method="post"> 
+            {% csrf_token %}    
+            <br>
+            <div class="col-lg-11 mt-5 mt-lg-0 d-flex align-items-stretch">
+                <div>
+                    <label class='rotulo_filtro' for="paciente">DNI Paciente:</label> 
+                    {{ bajaturno_form.dni }} {{ pacientel }}     
+                </div>
+                <div class="form-row justify-content-center">
+                    <button type="submit" class="btn btn-primary">Consultar</button>                   
+                </div>
+            </div>
+                <div class="form-row justify-content-center">
+                    <div class="form-group col-md-16"> 
+                        <table class="table table-striped">  
+                        <thead class="table-header"> 
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Médico</th>
+                                <th scope="col">Especialidad</th>
+                                <!-- <th scope="col">Paciente</th> -->
+                                <th scope="col">Selección</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                
+                                
+                                {% for xx in listado_turnos %}     
+                                <tr>
+                                    <td>{{ xx.fecha }}</td>
+                                    <td>{{ xx.hora }}</td>
+                                    <td>{{ xx.medico.apellido}} , {{xx.medico.nombre}}</td>
+                                    <td>{{ xx.medico.especialidad.descripcion}}</td>
+                                    <!--<td>{{xx.id}}</td>-->
+                                    <td><input type="radio" class="form-check-input" name="selectbajaturno"   value="{{ xx.id }}" ></td>     
+                                    <!-- <td> <a href="eliminar_turno/{{xx.id}}" class="btn btn-danger">"Eliminar"</a>   </td>  -->
+                                    <!-- <td> <a href="eliminar_turno?id={{xx.id}}" name= 'eliminar' class="btn btn-danger">"Eliminar"</a>   </td>   -->
+                                    
+                                </tr>
+                                {% endfor %}
+                           
+                        </tbody>
+                           
+                            <!-- si no hay ningun radio bnutton presionado, que aparezca el boton de seleccionar 
+                             si está seleccionado, ocultar el de seleccion y que aparezca el de confirmar la baja_turno  --> 
+
+                        </table>
+                    </div>
+                </div>
+
+            <div class="form-row justify-content-center">
+				<button type="submit" name="eliminar_turno" class="btn btn-primary" {{ null }}>Eliminar turno</button>
+			</div>
+
+            {% if selectbjaturno is not null %} checked id_borrar = {{ xx.id }} 
+            {{ checked_id_borrar }}
+            {% endif %}
+
+        </form>
+    </div>
+<!--</div>
+</div>-->
+</div>
+
+
+
+{% endblock %}  
+

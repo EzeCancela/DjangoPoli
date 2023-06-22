@@ -1,0 +1,130 @@
+/* Estilos para la barra de navegación */
+.social-part .fa{
+    padding-right:20px;
+}
+
+ul li a{
+    margin-right: 20px;
+    color: rgba(0,0,0,.5);
+}
+
+.flex-md-row {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+}
+
+.navbar-brand img {
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-link {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Estilos para las secciones */
+.seccion1 {
+  background-image: url(ruta/a/fondo1.jpg);
+  background-size: cover;
+  padding: 100px 0;
+}
+
+.seccion2 {
+  background-image: url(ruta/a/fondo2.jpg);
+  background-size: cover;
+  padding: 100px 0;
+}
+
+.seccion3 {
+  background-image: url(ruta/a/fondo3.jpg);
+  background-size: cover;
+  padding: 100px 0;
+}
+
+/* Estilos para el footer */
+footer {
+  background-color: #277abf;
+  height: 100px;
+}
+
+footer p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+footer img {
+  filter: invert(1);
+}
+
+.fa-twitter, .fa-facebook, .fa-instagram {
+  color: #fd7e14;
+}
+
+.menu-part {
+  padding-right: 20px;
+  color: rgba(0,0,0,.5);
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+}
+.menu-part:hover {
+  color: rgba(0,0,0,.7);
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.container-turno {
+  background-color: black;
+}
+.form-container-turno {
+  background-color: black;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+        border: 2px solid white;
+  margin: 50px auto;
+        max-width: 800px;
+}
+.form-container-turno h2 {
+  margin-bottom: 30px;
+}
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.form-group {
+  flex-basis: 50%;
+  margin-right: 5%;
+  margin-bottom: 0;
+}
+.form-group:last-of-type {
+  margin-right: 0;
+}
+.form-group-2 {
+  flex-basis: 100%;
+  margin-bottom: 10px;
+}
+    .form-group-2:last-of-type {
+        margin-right: 0;
+    }
+    #especialidad,#fecha {
+        margin-right: 30px;
+    }
+    .table-header {
+        font-size: 12px;
+    }
+    .table-bordered {
+        border: 2px solid #ccc;
+    }
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}

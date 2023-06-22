@@ -1,0 +1,29 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/listar_medicos.css' %}">
+{% endblock %}
+
+{% block titulo %}Listado de Médicos{% endblock %}
+
+{% block encabezado %}
+<h2>Listado de Médicos</h2>
+{% endblock %}
+
+{% block contenido %}
+
+<section class="listado" style="margin-top: 40px;">
+<ul>
+    {% for medico in object_list %}
+        <li>
+            <P><b>Nombre:</b> {{medico.nombre_completo}}</P>
+            <P><b>Especialidad:</b> {{medico.especialidad.descripcion}}</P>     
+        </li>
+    {% empty %}
+        <li>No hay médicos habilitados</li>
+    {% endfor %}
+</ul>
+</section>
+{% endblock %}

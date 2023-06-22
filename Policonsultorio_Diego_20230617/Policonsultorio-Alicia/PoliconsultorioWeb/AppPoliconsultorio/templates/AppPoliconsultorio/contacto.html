@@ -1,0 +1,22 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+{% block titulo %} Ingreso de datos para el alta del turno médico {% endblock %}
+{% block contenido %}
+<div class="justifica-arriba">
+    <form action="{% url "contacto" %}" method="post">
+        {% csrf_token %}
+        <!--{{ contacto_form }}-->
+        <!-- lo de abajo hace que quede encolumnado, 
+            el profe dijo que se puede  traer de a campos 
+            para hacerlo en un html con estilos...-->
+        {{ contacto_form.nombre.label}}
+        {{ contacto_form.nombre}}
+        <br><br>
+        {{ contacto_form.as_p }}
+
+        <input type="submit" value="Contactar">
+    </form>
+</div>
+
+{% endblock %}

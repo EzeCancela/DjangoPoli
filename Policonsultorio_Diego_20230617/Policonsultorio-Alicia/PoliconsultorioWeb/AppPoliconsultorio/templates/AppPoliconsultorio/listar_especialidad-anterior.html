@@ -1,0 +1,32 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/turno.css' %}">
+{% endblock %}
+
+link rel="stylesheet" href="{% static 'AppPoliconsultorio/listar_especialidad.css' %}"
+
+{% block titulo %}Listado de Especialidades{% endblock %}
+
+{% block encabezado %}
+<h2>Listado de Especialidades</h2>
+{% endblock %}
+
+{% block contenido %}
+
+<section class="listado" style="margin-top: 40px;">
+
+    {%for especialidad in lista_especialidades %}
+        <article>
+            <p><b>Código:</b> {{especialidad.codigo}}</p>  
+            <p><b>Descripción:</b> {{especialidad.descripcion}}</p>
+            <P>--------------------------------------------------</P>        
+        </article>
+    {% empty %}
+
+    {% endfor %}
+
+</section>
+{% endblock %}

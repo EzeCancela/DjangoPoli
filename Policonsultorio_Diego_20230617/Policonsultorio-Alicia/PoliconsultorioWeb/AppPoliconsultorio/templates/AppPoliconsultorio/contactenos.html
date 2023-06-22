@@ -1,0 +1,15 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+{% block titulo %} Contacte a Policonsultorio{% endblock %}
+{% block contenido %}
+    <h2>Nos pueden ubicar en las siguientes redes sociales</h2>
+    <ul>
+        {% filter lower %}
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>Whatsapp</li>
+        {% endfilter %}
+    </ul>
+
+{% endblock %}

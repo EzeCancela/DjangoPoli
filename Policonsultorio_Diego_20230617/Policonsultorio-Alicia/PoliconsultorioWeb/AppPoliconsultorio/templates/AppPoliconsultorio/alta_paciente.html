@@ -1,0 +1,144 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="container">
+	<div class="form-container justifica-arriba">
+		<div class="form-row justify-content-center">
+			<!--<h2><u>Ingrese los datos del turno médico</u></h2>-->
+			{% block titulo %} <h2><u> Ingreso de un Paciente</u></h2> {% endblock %}
+		</div>
+		<div class="messages form-row justify-content-center" style="color: red;">
+			{% filter upper %}
+				<p><b> {{ error_formulario }} </b></p>
+			{% endfilter %}
+		</div>
+		<div class="messages form-row justify-content-center">
+			{% if messages %}
+				<ul class="messages_list">
+					{% for message in messages %}
+						{% filter upper %}
+						<li style="color: red;" {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+							<b> {{ message }} </b>
+						</li>
+						{% endfilter %}
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		<!--<form>-->
+		<form action="{% url "alta_medico" %}" method="post">
+			{% csrf_token %}
+			<div class="form-row">
+				<div class="col-lg-11 mt-5 mt-lg-0 d-flex align-items-stretch">
+					<div class="form-group col-md-6">
+						<label for="paciente">DNI Paciente: <b>{{ paciente }}</b></label>
+						<!--<input type="text" class="form-control" id="paciente">-->
+						{{ alta_turno_form.paciente }}
+					</div>
+					<div class="form-group col-md-6 mt-3">
+						<!-- <button type="submit" name="validar_paciente" class="btn btn-primary" {% if alta_turno_form.paciente.field.widget.attrs.disabled %} disabled style="background-color:green;" {% endif %}>Buscar paciente</button> -->
+						{% if alta_turno_form.paciente.field.widget.attrs.disabled %}
+						<!-- Agregue este para ver si me lo guarda aunque este deshabilitado -->
+						<input type="hidden" name="paciente" value="{{alta_turno_form.paciente.value}}">
+						<button type="submit" name="validar_paciente" class="btn btn-primary" value="Paciente validado" style="background-color:green;" disabled>Paciente encontrado ✓</button>
+						<input type="hidden" name="validar_paciente" class="btn btn-primary" value="Paciente validado" style="display: none;">
+						{% else %}
+							<button type="submit" name="validar_paciente" class="btn btn-primary">Buscar paciente</button>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-11 mt-5 mt-lg-0 d-flex align-items-stretch">
+					<div class="form-group col-md-6">
+						<label for="especialidad">Especialidad:</label>
+						<!--<select class="form-control" id="especialidad">
+							<option value="">Seleccione una especialidad</option>
+							{% for especialidad in listado_especialidad %}
+								<option value="{{especialidad}}">{{especialidad}}</option>
+							{% endfor %}
+						</select>-->
+						{{ alta_turno_form.especialidad}}
+					</div>
+					<div class="form-group col-md-6 mt-3">
+						<!-- <button type="submit" name="validar_paciente" class="btn btn-primary" {% if alta_turno_form.paciente.field.widget.attrs.disabled %} disabled style="background-color:green;" {% endif %}>Buscar paciente</button> -->
+						{% if alta_turno_form.especialidad.field.widget.attrs.disabled %}
+						<!-- Agregue este para ver si me lo guarda aunque este deshabilitado -->
+						<input type="hidden" name="especialidad" value="{{alta_turno_form.especialidad.value}}">
+						<button type="submit" name="validar_especialidad" class="btn btn-primary" value="Especialidad validada" style="background-color:green;" disabled>Médico/s encontrado/s ✓</button>
+						<input type="hidden" name="validar_especialidad" class="btn btn-primary" value="Especialidad validada" style="display: none;">
+						{% else %}
+							<button type="submit" name="validar_especialidad" class="btn btn-primary" {{ estado_boton_buscar_medicos }}>Buscar médicos</button>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-11 mt-5 mt-lg-0 d-flex align-items-stretch">
+					<div class="form-group col-md-6 mt-3 mt-md-0">
+						<label for="medico">Médico:</label>
+						<!-- <select class="form-control" id="medico">
+						<option value="">Seleccione un médico</option>
+							{% for medico in listado_medicos %}
+								<option value="{{medico.ID}}">{{medico.nombre}}</option>
+							{% endfor %}							
+						</select> -->
+						{{ alta_turno_form.medico}}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-3 mt-5 mt-lg-0 align-items-stretch">
+					<label for="fecha">Fecha:</label>
+					<!-- <input type="date" class="form-control" id="fecha"> -->
+					{{ alta_turno_form.fecha }}
+				</div>
+				<div class="form-group col-md-6 mt-3">
+					<!-- comentado <button type="submit" name="buscar_turnos" class="btn btn-primary">Buscar turnos</button> -->
+					<!-- <button type="submit" name="validar_paciente" class="btn btn-primary" {% if alta_turno_form.paciente.field.widget.attrs.disabled %} disabled style="background-color:green;" {% endif %}>Buscar paciente</button> -->
+					{% if alta_turno_form.medico.field.widget.attrs.disabled and alta_turno_form.fecha.field.widget.attrs.disabled %}
+					<!-- Agregue este para ver si me lo guarda aunque este deshabilitado -->
+					<input type="hidden" name="medico" value="{{alta_turno_form.medico.value}}">
+					<input type="hidden" name="fecha" value="{{alta_turno_form.fecha.value}}">
+					<button type="submit" name="buscar_turnos" class="btn btn-primary" value="busqueda validada" style="background-color:green;" disabled>Turnos encontrados ✓</button>
+					<input type="hidden" name="buscar_turnos" class="btn btn-primary" value="busqueda validada" style="display: none;">
+					{% else %}
+						<button type="submit" name="buscar_turnos" class="btn btn-primary" {{ estado_boton_buscar_turnos }}>Buscar turnos</button>
+					{% endif %}
+				</div>
+			</div>
+			<div class="form-row justify-content-center">
+				<div class="form-group col-md-12">
+					<table class="table table-bordered">
+						<thead class="table-header">
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">Horario</th>
+							<th scope="col">Disponibilidad</th>
+						</tr>
+						</thead>
+						<tbody>
+							{% for disp_medico in listado_disp_medicos %}
+								<tr>
+									<th scope="row"><input type="radio" name="horario" value="{{disp_medico.ID}}" {{disp_medico.flag}}></th>
+									<td>{{disp_medico.horario}}</td>
+									<td>{{disp_medico.descr_disponible}}</td>
+								</tr>
+							{% endfor %} 
+							<!--{% for turno_disp in alta_turno_form3.seleccion_turno %}
+								<tr><td>{{ turno_disp }}</td><td>Prueba</td><td>{{ alta_turno_form3.seleccion_turno.label.0.1 }}</td></tr>
+							{% endfor %}-->
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="form-row justify-content-center">
+				<button type="submit" name="guardar_turno" class="btn btn-primary" {{ estado_boton_guardar_turno }}>Guardar turno</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}

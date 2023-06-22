@@ -1,0 +1,31 @@
+table {
+    background-color: lightblue;
+    /* color: white; */
+    align-items: center;
+}
+
+th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.bt_medicos {
+    background-color: darkslategray;
+    color: burlywood;
+}
+
+.form-group-2 {
+    flex-basis: 50%;
+    margin-bottom: 10px;
+  }
+
+.medico {
+    background-color: darksalmon;
+}

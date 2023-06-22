@@ -1,0 +1,110 @@
+{% extends 'AppPoliconsultorio/base.html' %}
+{% load static %}
+
+{% block titulo %} Consulta de Turnos {% endblock %}
+ <!-- Estilos CSS personalizados-->
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static '/css/turno.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+	<div class="form-container justifica-arriba">
+		<div class="form-row justify-content-center">
+			<h2><u>Consulta de Turnos</u></h2>
+		</div>
+		<!--<form>-->
+		<form action="{% url 'consulta_turnos' %}" method="post">
+			{% csrf_token %}
+			<div class="form-row">
+				<div class="mt-lg-0 d-flex align-items-stretch">
+					<label class='rotulo_filtro' for="paciente">Paciente: <b>{{ paciente }}</b></label>
+					{{ consulta_turnos_form.paciente }}
+					<!-- <label class='nombre_completo' for="paciente"><b>{{ nombre_completo }}</b></label> -->
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-11 mt-5 mt-lg-0 d-flex">
+					<label class='rotulo_filtro' for="especialidad">Especialidad:</label>
+					{{ consulta_turnos_form.especialidad }}
+					<label class='rotulo_filtro' for="medico">Médico:</label>
+					{{ consulta_turnos_form.medico }}
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-11 mt-5 mt-lg-0 d-flex">
+					<label class='rotulo_filtro' for="fechaDesde"> Fecha Desde:</label>
+					{{ consulta_turnos_form.fechaDesde }}
+					<label class='rotulo_filtro' for="fechaHasta"> Fecha Hasta:</label>
+					{{ consulta_turnos_form.fechaHasta }}
+				</div>
+			</div>
+
+			<!-- Mensajes -->
+			<div class="mensajes">
+				<!-- <ul class="messages_list">
+					{% if not paciente.valid %}
+						<li>
+							{% filter upper %}
+							El DNI del paciente debe contener sólo números
+							{% endfilter %}
+						</li>
+					{% endif %}
+					{% if messages %}
+						{% for message in messages %}
+							<li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+						{% endfor %}
+					{% endif %}
+				</ul> -->
+				{% if errores %}
+					{{errores}}
+				{% endif %}
+				<!-- {% if errores %}
+					<ul class="errors_list">
+						{% for error in errores %}
+							<li {% if error.tags %} class="{{error.tags}}" {% endif %}>{{error}}</li>
+						{% endfor %}
+					</ul>
+				{% endif %} -->
+			</div>
+			<div class="messages form-row justify-content-center" style="color: red;">
+				{% filter upper %}
+					<p><b> {{ ValidationError }} </b></p>
+				{% endfilter %}
+			</div>
+			<div class="form-row justify-content-center">
+				<button type="submit" class="btn btn-primary">Consultar</button>
+			</div>
+			<div class="form-row justify-content-center">
+				<div class="form-group col-md-12">
+					<table class="table table-bordered">
+						<thead class="table-header">
+							<tr>
+								<th scope="col">Día</th>
+								<th scope="col">Hora</th>
+								<th scope="col">Médico</th>
+								<th scope="col">Especialidad</th>
+								<th scope="col">Paciente</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{% for turno in listado_turnos %}
+							<tr style='background-color: {% cycle '#f3c5aa' '#f1d5c5' %}'>
+								<th>{{ turno.fecha }}</th>
+								<td>{{ turno.hora }}</td>
+								<td>{{ turno.medico.apellido }}, {{ turno.medico.nombre }}</td>
+								<td>{{ turno.medico.especialidad.descripcion }}</td>
+								<td>{{ turno.paciente.apellido }}, {{ turno.paciente.nombre }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+            </div>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<title>{% block titulo %} {% endblock %}</title>-->
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+	<!-- Bootstrap CSS Files -->
+	<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/bootstrap-icons.css' %}" rel="stylesheet">
+	<link href="{% static '/css/boxicons.min.css' %}" rel="stylesheet">
+	<link href="{% static '/css/boxicons.css' %}" rel="stylesheet">
+
+	<!-- Template NAV CSS File -->
+	<link rel="stylesheet" href="{% static '/css/barra_estilo.css' %}">
+ 
+    <!-- Estilos CSS personalizados -->
+    {% block extra_css %} {% endblock %}
+
+   <!-- Template Main JS File -->
+   <script src="{% static '/js/main.js' %}"></script>
+
+</head>
+<body>
+
+
+<!-- Barra de navegación -->
+{% include 'AppPoliconsultorio/menu.html' %}
+
+
+<main>
+{% block contenido %}
+{% endblock %}
+</main>
+
+<!-- Footer -->
+{% include 'AppPoliconsultorio/footer.html' %}
+  
+<!-- Bootstrap JS Files -->
+<script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+
+
+</body>
+</html>
